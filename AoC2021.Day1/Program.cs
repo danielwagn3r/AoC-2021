@@ -7,17 +7,7 @@ Console.WriteLine($"Two: {PuzzleTwo(input)}");
 
 int PuzzleOne(int[] input)
 {
-    int count = 0;
-
-    for (int i = 1; i < input.Length; i++)
-    {
-        if (input[i] > input[i - 1])
-        {
-            count++;
-        }
-    }
-
-    return count;
+    return input.Zip(input.Skip(1), (a, b) => b > a ? 1 : 0).Sum();
 }
 
 int PuzzleTwo(int[] input)
