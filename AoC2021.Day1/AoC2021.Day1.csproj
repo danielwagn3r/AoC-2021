@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AoC2021.Common\AoC2021.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
