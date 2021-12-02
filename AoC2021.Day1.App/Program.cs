@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AoC2021.Common;
 
-string sessionToken = "53616c7465645f5fa8e69a3592c87eaa604b1c639256aa8ca1e07c56f6f025c624065bea1ec0e4758e2717813b4c799e";
+string sessionToken = "";
 
 var client = new AoCClient(sessionToken);
 var result = await client.GetInput(1, 2021);
