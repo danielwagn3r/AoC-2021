@@ -7,24 +7,27 @@ Console.WriteLine($"Two: {PuzzleTwo(input)}");
 
 int PuzzleOne(string[] input)
 {
-    var commands = input.Select(l => l.Split(' ')).Select(t => new { Direction = t[0], Step = int.Parse(t[1])});
+    var commands = input.Select(l => l.Split(' ')).Select(t => new { Direction = t[0], Step = int.Parse(t[1]) });
 
     int px = 0;
     int py = 0;
 
-    foreach( var move in commands)
+    foreach (var move in commands)
     {
-        switch(move.Direction)
+        switch (move.Direction)
         {
             case "forward":
                 px += move.Step;
                 break;
+
             case "up":
                 py -= move.Step;
                 break;
+
             case "down":
                 py += move.Step;
                 break;
+
             default:
                 throw new InvalidOperationException();
         }
@@ -35,5 +38,33 @@ int PuzzleOne(string[] input)
 
 int PuzzleTwo(string[] input)
 {
-    return 0;
+    var commands = input.Select(l => l.Split(' ')).Select(t => new { Direction = t[0], Step = int.Parse(t[1]) });
+
+    int px = 0;
+    int py = 0;
+    int aim = 0;
+
+    foreach (var move in commands)
+    {
+        switch (move.Direction)
+        {
+            case "forward":
+                px += move.Step;
+                py += aim * move.Step;
+                break;
+
+            case "up":
+                aim -= move.Step;
+                break;
+
+            case "down":
+                aim += move.Step;
+                break;
+
+            default:
+                throw new InvalidOperationException();
+        }
+    }
+
+    return px * py;
 }
