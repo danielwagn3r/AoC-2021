@@ -1,12 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AoC2021.Common;
 
-string sessionToken = "";
-
-var client = new AoCClient(sessionToken);
-var result = await client.GetInput(1, 2021);
-
-var input = result.GetLines(false).Select(line => int.Parse(line)).ToArray();
+var input = (await File.ReadAllLinesAsync("input.txt")).Select(line => int.Parse(line)).ToArray();
 
 Console.WriteLine($"One: {PuzzleOne(input)}");
 Console.WriteLine($"Two: {PuzzleTwo(input)}");
