@@ -7,7 +7,7 @@ Console.WriteLine($"Two: {PuzzleTwo(input)}");
 
 int PuzzleOne(int[] input)
 {
-    return input.Zip(input.Skip(1), (a, b) => b > a ? 1 : 0).Sum();
+    return input.Select((m, i) => (i != 0 && m > input[i - 1]) ? 1 : 0).Sum();
 }
 
 int PuzzleTwo(int[] input)
@@ -19,10 +19,5 @@ int PuzzleTwo(int[] input)
 
 int[] GetWindows(int[] input)
 {
-    var r2 = input.Zip(input.Skip(1), (a, b) => Tuple.Create(a, b));
-    var result = r2.Zip(input.Skip(2), (a, b) => Tuple.Create(a.Item1, a.Item2, b));
-
-    var windows = result.Select(t => t.Item1 + t.Item2 + t.Item3);
-
-    return windows.ToArray();
+    return input.SkipLast(2).Select((m, i) => m + input[i + 1] + input[i + 2]).ToArray();
 }
