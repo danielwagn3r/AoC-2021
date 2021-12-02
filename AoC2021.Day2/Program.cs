@@ -9,23 +9,23 @@ int PuzzleOne(string[] input)
 {
     var commands = input.Select(l => l.Split(' ')).Select(t => new { Direction = t[0], Step = int.Parse(t[1]) });
 
-    int px = 0;
-    int py = 0;
+    int position = 0;
+    int depth = 0;
 
     foreach (var move in commands)
     {
         switch (move.Direction)
         {
             case "forward":
-                px += move.Step;
+                position += move.Step;
                 break;
 
             case "up":
-                py -= move.Step;
+                depth -= move.Step;
                 break;
 
             case "down":
-                py += move.Step;
+                depth += move.Step;
                 break;
 
             default:
@@ -33,15 +33,15 @@ int PuzzleOne(string[] input)
         }
     }
 
-    return px * py;
+    return position * depth;
 }
 
 int PuzzleTwo(string[] input)
 {
     var commands = input.Select(l => l.Split(' ')).Select(t => new { Direction = t[0], Step = int.Parse(t[1]) });
 
-    int px = 0;
-    int py = 0;
+    int position = 0;
+    int depth = 0;
     int aim = 0;
 
     foreach (var move in commands)
@@ -49,8 +49,8 @@ int PuzzleTwo(string[] input)
         switch (move.Direction)
         {
             case "forward":
-                px += move.Step;
-                py += aim * move.Step;
+                position += move.Step;
+                depth += aim * move.Step;
                 break;
 
             case "up":
@@ -66,5 +66,5 @@ int PuzzleTwo(string[] input)
         }
     }
 
-    return px * py;
+    return position * depth;
 }
