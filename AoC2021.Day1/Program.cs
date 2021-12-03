@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("AoC 2021 Day 1");
 
 var input = (await File.ReadAllLinesAsync("input.txt")).Select(line => int.Parse(line)).ToArray();
 
