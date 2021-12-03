@@ -8,7 +8,7 @@ Console.WriteLine($"Two: {PuzzleTwo(input)}");
 
 int PuzzleOne(int[] input)
 {
-    return input.Select((m, i) => (i != 0 && m > input[i - 1]) ? 1 : 0).Sum();
+    return input.Skip(1).Select((m, i) => m > input[i] ? 1 : 0).Sum();
 }
 
 int PuzzleTwo(int[] input)
