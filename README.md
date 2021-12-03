@@ -1,2 +1,3 @@
-# AoC-2021
-Advent of Code 2021 in C#
+# Advent of Code 2021
+
+My solutions in C#
