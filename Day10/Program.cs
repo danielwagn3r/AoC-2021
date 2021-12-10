@@ -3,20 +3,28 @@ Console.WriteLine("AoC 2021 Day 10");
 
 var input = (await File.ReadAllLinesAsync("input.txt")).ToArray();
 
-Dictionary<char, char> dict = new Dictionary<char, char>()
+Dictionary<char, char> dict = new()
 {
     { '(', ')' },
     { '[', ']' },
     { '{', '}' },
-    { '<', '>'}
+    { '<', '>' }
 };
 
-Dictionary<char, int> points = new Dictionary<char, int>()
+Dictionary<char, int> syntaxPoints = new()
 {
     { ')', 3 },
     { ']', 57 },
     { '}', 1197 },
     { '>', 25137 }
+};
+
+Dictionary<char, int> completionPoints = new()
+{
+    { ')', 1 },
+    { ']', 2 },
+    { '}', 3 },
+    { '>', 4 }
 };
 
 Console.WriteLine($"One: {PuzzleOne(input)}");
@@ -55,7 +63,7 @@ int PuzzleOne(string[] input)
         }
     }
 
-    return errors.Select(e => points[e]).Sum(); ;
+    return errors.Select(e => syntaxPoints[e]).Sum();
 }
 
 bool Closes(char chunk, char match)
@@ -66,7 +74,52 @@ bool Closes(char chunk, char match)
     return dict[chunk] == match;
 }
 
-int PuzzleTwo(string[] input)
+long PuzzleTwo(string[] input)
 {
-    return 0;
+    List<long> points = new();
+
+    foreach (var line in input)
+    {
+        bool currupted = false;
+        Stack<char> chunks = new();
+
+        foreach (var c in line)
+        {
+            if (dict.ContainsKey(c))
+            {
+                chunks.Push(c);
+            }
+            else if (dict.ContainsValue(c))
+            {
+                var top = chunks.Peek();
+
+                if (Closes(top, c))
+                {
+                    chunks.Pop();
+                }
+                else
+                {
+                    currupted = true;
+                    break;
+                }
+            }
+            else
+                throw new ArgumentException($"Unexpected chunk '{c}' detected.");
+        }
+
+        if (!currupted)
+        {
+            long score = 0;
+
+            foreach (var c in chunks)
+            {
+                score *= 5;
+                score += completionPoints[dict[c]];
+            }
+
+            points.Add(score);
+        }
+    }
+
+    return points.OrderBy(p => p).ElementAt(points.Count / 2);
 }
