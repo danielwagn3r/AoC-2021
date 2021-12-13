@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Common;
+
 Console.WriteLine("AoC 2021 Day 11");
 
 var input = (await File.ReadAllLinesAsync("input.txt")).Select(l => l.Select(c => c - '0').ToArray()).ToArray();
@@ -175,43 +177,3 @@ int PuzzleTwo(int[,] octos)
 }
 
 (int, int) GetDimensions(int[][] input) => (input.Length, input[0].Length);
-
-internal class Point : IEquatable<Point>
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-
-    public Point(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-
-    public override bool Equals(Object obj)
-    {
-        if (obj == null)
-            return false;
-
-        if (obj is not Point point)
-            throw new ArgumentException("Object is not a Point.");
-
-        return this.X == point.X && this.Y == point.Y;
-    }
-
-    public override int GetHashCode()
-    {
-        int hashX = X.GetHashCode();
-
-        int hashY = Y.GetHashCode();
-
-        return hashX ^ hashY;
-    }
-
-    public bool Equals(Point obj)
-    {
-        if (obj == null)
-            return false;
-
-        return this.X == obj.X && this.Y == obj.Y;
-    }
-}

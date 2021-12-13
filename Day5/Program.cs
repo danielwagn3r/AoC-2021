@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Common;
 using System.Text.RegularExpressions;
 
 Console.WriteLine("AoC 2021 Day 5");
@@ -37,8 +38,8 @@ int PuzzleTwo(string[] input)
 
         lines[i] = new Line
         {
-            A = new Point { X = c[0][0], Y = c[0][1] },
-            B = new Point { X = c[1][0], Y = c[1][1] },
+            A = new Point(c[0][0], c[0][1]),
+            B = new Point(c[1][0], c[1][1]),
         };
 
         if (lines[i].A.X > maxX) maxX = lines[i].A.X;
@@ -88,16 +89,4 @@ int CountOverlaps(Line[] lines, int maxX, int maxY)
     }
 
     return count;
-}
-
-public class Point
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-}
-
-public class Line
-{
-    public Point A { get; set; }
-    public Point B { get; set; }
 }
