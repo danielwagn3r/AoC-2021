@@ -25,9 +25,9 @@ int PuzzleTwo(string[] input)
     return CountOverlaps(lines, maxX, maxY);
 }
 
-(Line[], int, int) ParseLines(string[] input)
+(Edge[], int, int) ParseLines(string[] input)
 {
-    Line[] lines = new Line[input.Length];
+    Edge[] lines = new Edge[input.Length];
     int maxX = 0;
     int maxY = 0;
 
@@ -36,10 +36,10 @@ int PuzzleTwo(string[] input)
         var c = Regex.Split(input[i], " -> ")
             .Select(p => p.Split(',').Select(c => int.Parse(c)).ToArray()).ToArray();
 
-        lines[i] = new Line
+        lines[i] = new Edge
         {
-            A = new Point(c[0][0], c[0][1]),
-            B = new Point(c[1][0], c[1][1]),
+            A = new Vertex(c[0][0], c[0][1]),
+            B = new Vertex(c[1][0], c[1][1]),
         };
 
         if (lines[i].A.X > maxX) maxX = lines[i].A.X;
@@ -51,7 +51,7 @@ int PuzzleTwo(string[] input)
     return (lines, maxX, maxY);
 }
 
-int CountOverlaps(Line[] lines, int maxX, int maxY)
+int CountOverlaps(Edge[] lines, int maxX, int maxY)
 {
     int[,] diagram = new int[maxX + 1, maxY + 1];
     int count = 0;

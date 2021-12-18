@@ -9,7 +9,7 @@ var input = (await File.ReadAllLinesAsync("input.txt"));
 var split = input.Select((l, i) => (string.IsNullOrEmpty(l), i)).Where(r => r.Item1).Select(r => r.Item2).First();
 
 // Parse dots
-var dotSpec = input.Take(split).Select(line => line.Split(',')).Select(s => new Point(int.Parse(s[0]), int.Parse(s[1])));
+var dotSpec = input.Take(split).Select(line => line.Split(',')).Select(s => new Vertex(int.Parse(s[0]), int.Parse(s[1])));
 var foldings = input.Skip(split + 1)
     .Select(line => line.Split(' '))
     .Select(i => i[2].Split('='))

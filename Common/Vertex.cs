@@ -1,11 +1,11 @@
 ﻿namespace Common
 {
-    public class Point : IEquatable<Point>
+    public class Vertex : IEquatable<Vertex>
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Point(int x, int y)
+        public Vertex(int x, int y)
         {
             X = x;
             Y = y;
@@ -16,10 +16,10 @@
             if (obj == null)
                 return false;
 
-            if (obj is not Point point)
+            if (obj is not Vertex v)
                 throw new ArgumentException("Object is not a Point.");
 
-            return this.X == point.X && this.Y == point.Y;
+            return this.X == v.X && this.Y == v.Y;
         }
 
         public override int GetHashCode()
@@ -31,12 +31,12 @@
             return hashX ^ hashY;
         }
 
-        public bool Equals(Point obj)
+        public bool Equals(Vertex v)
         {
-            if (obj == null)
+            if (v == null)
                 return false;
 
-            return this.X == obj.X && this.Y == obj.Y;
+            return this.X == v.X && this.Y == v.Y;
         }
     }
 }

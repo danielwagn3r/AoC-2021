@@ -37,7 +37,7 @@ int PuzzleOne(int[,] octos)
     for (int i = 0; i < iterations; i++)
     {
         bool[,] flashed = new bool[maxX, maxY];
-        List<Point> flashing = new();
+        List<Vertex> flashing = new();
 
         for (int x = 0; x < maxX; x++)
         {
@@ -45,7 +45,7 @@ int PuzzleOne(int[,] octos)
             {
                 if (++octos[x, y] > 9)
                 {
-                    flashing.Add(new Point(x, y));
+                    flashing.Add(new Vertex(x, y));
                     flashes++;
                 }
             }
@@ -60,12 +60,12 @@ int PuzzleOne(int[,] octos)
     return flashes;
 }
 
-int FlashOcto(ref int[,] octos, ref bool[,] flashed, Point octo)
+int FlashOcto(ref int[,] octos, ref bool[,] flashed, Vertex octo)
 {
     if (flashed[octo.X, octo.Y])
         return 0;
 
-    List<Point> flashing = new();
+    List<Vertex> flashing = new();
 
     if (octos[octo.X, octo.Y] <= 9)
     {
@@ -140,7 +140,7 @@ int PuzzleTwo(int[,] octos)
     for (i = 0; ; i++)
     {
         bool[,] flashed = new bool[maxX, maxY];
-        List<Point> flashing = new();
+        List<Vertex> flashing = new();
 
         for (int x = 0; x < maxX; x++)
         {
@@ -148,7 +148,7 @@ int PuzzleTwo(int[,] octos)
             {
                 if (++octos[x, y] > 9)
                 {
-                    flashing.Add(new Point(x, y));
+                    flashing.Add(new Vertex(x, y));
                     flashes++;
                 }
             }
