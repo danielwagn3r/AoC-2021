@@ -2,4 +2,4 @@
 
 My [Advent of Code](https://adventofcode.com/2021) 2021 solutions in C#
 
-![](https://img.shields.io/badge/day%20📅-21-blue) ![](https://img.shields.io/badge/stars%20⭐-30-yellow) ![](https://img.shields.io/badge/days%20completed-15-red)	
+![](https://img.shields.io/badge/day%20📅-22-blue) ![](https://img.shields.io/badge/stars%20⭐-30-yellow) ![](https://img.shields.io/badge/days%20completed-15-red)	
